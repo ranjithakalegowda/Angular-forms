@@ -18,13 +18,19 @@
             *ngIf = "!signupForm.get('email').valid && signupForm.get('email').touched">
             Please enter valid email
           </span>
-
         </div>
 
         <div class="radio" *ngFor = "let gender of genders">
           <label for="gender">
             <input type="radio" formControlName="gender" [value] = "gender" > {{gender}}
           </label>
+        </div>
+        <div formArrayName="hobbies">
+          <h4>Your Hobbies</h4>
+          <button class="btn btn-secondary btn-block mb-3" type="button" (click)="onAddHobby()">Add Hobby</button>
+          <div class="form-group" *ngFor = "let hobbyControl of signupForm.get('hobbies').controls; let i = index">
+            <input type="text" [formControlName] = "i" class="form-control">
+          </div>
         </div>
 
         <button class="btn btn-dark btn-block" type="submit">Submit</button>
